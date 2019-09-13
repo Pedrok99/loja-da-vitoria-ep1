@@ -55,3 +55,21 @@ Neste modo, também há alguns pontos a serem considerados:
 Quando finalizado, o projeto deverá conter um arquivo, na pasta `docs`, contendo instruções de execução (comandos, menus, etc) e a lista de dependências (bibliotecas ou pacotes necessários para se executar o software).
 
 Existe um material de apoio na [wiki do repositório](https://gitlab.com/oofga/eps/eps_2019_2/ep1/wikis/Home) contendo orientações técnicas relevantes para o desenvolvimento deste projeto.
+
+## 5. Critérios de Avaliação
+
+  A avaliação será realizada seguindo os seguintes critérios:
+
+|   ITEM    |   COMENTÁRIO  |   VALOR   |
+|------------------------|---------------------------------------------------------------------------------------------------------|---------|
+|**Modos da Aplicação**| A aplicação deve ter implementados os 3 modos: venda, etoque e recomendação. |    1,5 |
+|**Armazenamento em arquivo**| Os dados de vendas e estoque devem ser armazenados em arquivo e carregados toda vez que a aplicação é iniciada. |   1,0 |
+|**Herança**| Utilização de Herança (que faça sentido).  |   1,0 |
+|**Polimorfismo**|  No código deve haver, no mínimo, três casos de polimorfismo sendo utilizados.    |   1,0 |
+|**Encapsulamento**| Utilização adequada de encapsulamento em todas as classes.    |   1,0 |
+|**Modelagem**| Qualidade do código e dos relacionamentos entre classes.  |  1,5 |
+|**Execução**| O programa deve ser compilado a partir de uma Makefile usando o comando **make** e estar executando corretamente com instruções completas de uso.   |   1,0 |
+|**Qualidade do Código**| Utilização de boas práticas como o uso de bons nomes, modularização e organização em geral.    |  1,0 |
+|**Repositório**|   Utilização correta do repositório, commits claros e frequentes. |   1,0 |
+|      |    TOTAL   |   10  |
+|**Pontuação Extra**|   Qualidade e usabilidade acima da média.  |  0,5   |
