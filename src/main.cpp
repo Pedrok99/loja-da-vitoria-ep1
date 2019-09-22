@@ -1,16 +1,21 @@
 #include <iostream>
 #include <string>
 #include "Pessoa.hpp"
+#include "Cliente.hpp"
 using namespace std;
 
 int main(){
 
-    pessoa p1;
+    cliente c;
 
-    p1.setnome();
-    p1.setidade();
-    p1.setcpf();
-    p1.imprimedados();
+    c.setnome();
+    c.setidade();
+    c.setcpf();
+    c.isSocio();
+    c.saveclient(&c);
+    c.imprimedados();
+    c.showSocio();
+    c.find();
 
     return 0;
 }
