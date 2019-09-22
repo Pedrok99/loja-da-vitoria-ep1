@@ -8,20 +8,20 @@ using namespace std;
 
 class pessoa {
     private:
-        string nome, socio;
-        string cpf, idade;
+        string nome, cpf, idade;;
     public:
         pessoa();
         ~pessoa();
         void setnome();
+        void setnome(string nome);
         string getnome();
         void setidade();
+        void setidade(string idade);
         string getidade();
         void setcpf();
+        void setcpf(string cpf);
         string getcpf();
-        void issocio();
-        string showsocio();
         void imprimedados();
-        //virtual void abst ()=0; 
+        virtual void abst ()=0; 
 };
 #endif
