@@ -5,10 +5,10 @@
 using namespace std;
 
 pessoa :: pessoa(){
-    cout << "Pessoa construido"<< endl;
+    cout << "Pessoa construida"<< endl;
 }
 pessoa :: ~pessoa(){
-    cout << "Pessoa destruido"<< endl;
+    cout << "Pessoa destruida"<< endl;
 }
 
 void pessoa :: setnome(){
@@ -31,7 +31,9 @@ void pessoa :: setnome(){
     }while(z!=0);
     this->nome=x;  
 }
-
+void pessoa :: setnome(string nome){
+    this->nome = nome;
+}
 void pessoa :: setidade(){
     int x, y;
     cout << "Digite a idade do cliente:"<<endl;
@@ -49,16 +51,19 @@ void pessoa :: setidade(){
    this-> idade = to_string(x);
 
 }
+void pessoa :: setidade(string idade){
+    this->idade = idade;
+}
 void pessoa :: setcpf(){
     string x;
     int y; 
     cout << "Digite o CPF do cliente:"<<endl;
     do{
-    y=0;
-    getline(cin, x);
-    for(int i=0;i<x.size();i++){
-    if(!isdigit(x[i]) || isspace(x[i]) || x.size()!=11){
-        y=1;
+     y=0;
+        getline(cin, x);
+        for(int i=0;i<x.size();i++){
+            if(!isdigit(x[i]) || isspace(x[i]) || x.size()!=11){
+            y=1;
         }
     }
     if(y==1){
@@ -70,6 +75,11 @@ void pessoa :: setcpf(){
    this-> cpf = x;
 
 }
+
+void pessoa :: setcpf(string cpf){
+    this->cpf= cpf;
+}
+
 string pessoa::getcpf(){
     return this->cpf;
 }
