@@ -5,17 +5,16 @@
 using namespace std;
 
 pessoa :: pessoa(){
-    cout << "Pessoa construida"<< endl;
+   // cout << "Pessoa construida"<< endl;
 }
 pessoa :: ~pessoa(){
-    cout << "Pessoa destruida"<< endl;
+    //cout << "Pessoa destruida"<< endl;
 }
 
 void pessoa :: setnome(){
     string x;
     int z;
     cout << "Digite o nome do cliente:"<<endl;
-
     do{
     z=0;
     getline(cin, x);
@@ -64,8 +63,8 @@ void pessoa :: setcpf(){
         for(int i=0;i<x.size();i++){
             if(!isdigit(x[i]) || isspace(x[i]) || x.size()!=11){
             y=1;
+            }
         }
-    }
     if(y==1){
         cout <<"Cpf invalido. Digite novamente:"<< endl;
     }
@@ -83,6 +82,7 @@ void pessoa :: setcpf(string cpf){
 string pessoa::getcpf(){
     return this->cpf;
 }
+
 string pessoa::getidade(){
     return this->idade;
 }
