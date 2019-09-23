@@ -9,13 +9,13 @@ using namespace std;
 
 class cliente : public pessoa {
     private:
-        char socio;
+        string socio;
     public:
         cliente();
         ~cliente();
         void abst (){}; 
         void isSocio();
-        void isSocio(char x);
+        void isSocio(string x);
         void showSocio();
         void saveclient(cliente *p); 
         void find();  
