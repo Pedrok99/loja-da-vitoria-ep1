@@ -14,6 +14,8 @@ pessoa :: ~pessoa(){
 void pessoa :: setnome(){
     string x;
     int z;
+    //cin.clear();
+    //cin.ignore(10000, '\n');
     cout << "Digite o nome do cliente:"<<endl;
     do{
     z=0;
