@@ -2,11 +2,17 @@
 #include <string>
 #include "Pessoa.hpp"
 #include "Cliente.hpp"
+#include "Produto.hpp"
+#include <vector>
 using namespace std;
 
 int main(){
-  int opc, y;
+  int opc, checker;
+  string aux;
   cliente c;
+  produto p;
+  vector<string> vet; 
+ 
 system("cls");
 
 do{
@@ -14,36 +20,44 @@ do{
   cout << "=          LOJINHU DU PEDRINHU          ="<< endl;
   cout << "========================================="<< endl;
 
-  cout <<"\tMenu" << endl;
-  cout <<"1 - Cadastramento de Clientes"<< endl;
-  cout <<"2 - Modo Venda"<< endl;
-  cout <<"3 - Modo Estoque"<< endl;
-  cout <<"4 - Modo Recomendacao"<< endl;
+  cout <<"\t\t   Menu\n" << endl;
+  cout <<"1 - Modo Venda"<< endl;
+  cout <<"2 - Modo Estoque"<< endl;
+  cout <<"3 - Modo Recomendacao"<< endl;
   cout <<"0 - Sair" << endl;
 
   do{
-  y=0;
+  checker=0;
   cin >> opc;
   if(cin.fail()){
   cin.clear();
   cin.ignore(10000, '\n');
-  y=1;
+  checker=1;
   }
-  }while(y==1);
+  }while(checker==1);
 
   system("cls");
 
   switch (opc)
   {
   case 1:
-  cin.clear();    
-  cin.ignore(10000, '\n');
-  c.setnome();
-  c.setidade();
-  c.setcpf();
-  c.isSocio();
-  c.saveclient(&c);
-  cout << "Cliente cadastrado e salvo com sucesso !!" << endl;
+    cin.clear();
+    cin.ignore(10000,'\n');/*
+    c=c.find();
+    aux=c.getnome();
+   if(c.getnome()=="0"){
+      cout << "Por favor cadastre-o." << endl;
+      c.setnome();
+      c.setidade();
+      c.setcpf();
+      c.isSocio();
+    }else{
+    }
+    c.imprimedados();
+    c.showSocio();
+    c.saveclient(&c);*/
+    vet=p.getlista();
+    
   break;
 
   case 2:
