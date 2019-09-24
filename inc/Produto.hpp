@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 using namespace std;
 
 class produto {
@@ -14,9 +15,16 @@ class produto {
         ~produto();
 
         void setnome();
+        string getnome();
         void setcategoria();
+        string getcategoria();
         void setpreco();
+        float getpreco();
         void setquantidade();
+        int getquantidade();
+        void saveproduct(produto *p);
+        vector<string> getlista();
+        void carrinho(vector<string>);
 };
 
 #endif
