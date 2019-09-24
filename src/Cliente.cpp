@@ -54,8 +54,8 @@ void cliente :: saveclient(cliente *p){
 
 
 
-void cliente :: find(){
-    string x, inf;
+cliente cliente :: find(){
+    string x, inf, aux;
     int i=0, pos=0, y; 
     fstream arquivo;
     vector<string> v;
@@ -77,7 +77,7 @@ void cliente :: find(){
 
     arquivo.open("Clientes.txt", ios::in);
     i=0;
-
+    y=0;
     while (getline(arquivo, inf))
     {
         v.push_back(inf);
@@ -88,11 +88,21 @@ void cliente :: find(){
         }
         i++;
     }
+  arquivo.close();
     if(y==1){
         cout << "A posicao do cliente é" << pos << endl;
+        temp.setnome(v[pos]);
+        temp.setidade(v[pos+1]);
+        temp.setcpf(v[pos+2]);
+        temp.isSocio(v[pos+3]);
     }else{
+        aux="0";
         cout << "cliente nao encontrado !!"<< endl;
+        temp.setnome(aux);
+        temp.setidade(aux);
+        temp.setcpf(aux);
+        temp.isSocio(aux);
     }
-    arquivo.close();
-
+    return temp;
 }
+
