@@ -18,7 +18,8 @@ class cliente : public pessoa {
         void isSocio(string x);
         void showSocio();
         void saveclient(cliente *p); 
-        void find();  
+        cliente find();  
+        void compra();
 };
 
 #endif
