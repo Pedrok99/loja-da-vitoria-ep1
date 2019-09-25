@@ -7,19 +7,22 @@
 
 using namespace std;
 
-class cliente : public pessoa {
-    private:
-        string socio;
-    public:
-        cliente();
-        ~cliente();
-        void abst (){}; 
-        void isSocio();
-        void isSocio(string x);
-        void showSocio();
-        void saveclient(cliente *p); 
-        cliente find();  
-        void compra();
+class cliente : public pessoa
+{
+private:
+    string socio;
+
+public:
+    cliente();
+    ~cliente();
+    void abst(){};
+    void isSocio();
+    void isSocio(string x);
+    void showSocio();
+    string getSocio();
+    void saveclient(cliente *p);
+    cliente find();
+    void compra();
 };
 
 #endif
