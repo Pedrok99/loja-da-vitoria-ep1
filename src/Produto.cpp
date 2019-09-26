@@ -31,15 +31,15 @@ void produto::setnome()
             }
         }
         arq.open("Produtos.txt", ios::in);
-            while (getline(arq, aux))
+        while (getline(arq, aux))
+        {
+            if (aux == x)
             {
-                if (aux == x)
-                {
-                    cout << "Produto ja cadastrado. Digite novamente:" << endl;
-                    z = 1;
-                }
+                cout << "Produto ja cadastrado. Digite novamente:" << endl;
+                z = 1;
             }
-            arq.close();
+        }
+        arq.close();
 
     } while (z != 0);
     this->nome = x;
@@ -200,12 +200,12 @@ vector<string> produto ::getlista()
     return v;
 }
 
-void produto ::carrinho(vector<string> pro, string s)
+vector<string> produto ::carrinho(vector<string> pro, string s)
 {
     string quant, z;
     int y, i, p1, quantd;
     float preco, soma = 0, total;
-    vector<string> backup = pro, carrinho;
+    vector<string> backup = pro, carrinho, historico, vazio;
     fstream arq;
     do
     {
@@ -225,7 +225,7 @@ void produto ::carrinho(vector<string> pro, string s)
         p1 = i;
         cout << "Produto selecionado:" << pro[p1 * 4] << endl;
         carrinho.push_back(pro[p1 * 4]);
-        // carrinho.push_back(pro[(i*4)+2]);
+        historico.push_back(pro[(i * 4) + 1]);
         cout << "Digite a quantidade desejada:" << endl;
         do
         {
@@ -246,7 +246,7 @@ void produto ::carrinho(vector<string> pro, string s)
         if (i > quantd)
         {
             cout << "Quantidade acima do estoque. Saindo do modo venda." << endl;
-            return;
+            return vazio;
         }
         else
         {
@@ -302,11 +302,14 @@ void produto ::carrinho(vector<string> pro, string s)
              << endl;
         cout << "Desconto por ser socio (-15%):" << (soma * (15.0 / 100.0)) << endl;
         cout << "Preco final (-15% por ser socio): R$" << (soma - soma * (15.0 / 100.0)) << endl;
+        return historico;
     }
     else
     {
         cout << "Preco final: R$ " << soma << endl;
+        return historico;
     }
+    return historico;
 }
 
 void produto ::attproduto(vector<string> prod, int cod)
