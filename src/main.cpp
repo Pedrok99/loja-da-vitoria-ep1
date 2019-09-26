@@ -3,6 +3,7 @@
 #include "Pessoa.hpp"
 #include "Cliente.hpp"
 #include "Produto.hpp"
+#include "Recomendacao.hpp"
 #include <vector>
 using namespace std;
 
@@ -18,6 +19,7 @@ int main()
   string aux;
   cliente c;
   produto p;
+  recomendacao r;
   vector<string> vet, vaux;
 
   do
@@ -72,7 +74,7 @@ int main()
       cout << "Pressione qualquer tecla para ir ao catalogo de produtos..." << endl;
       getchar();
       vet = p.getlista();
-      p.carrinho(vet, c.getSocio());
+      r.historico(p.carrinho(vet, c.getSocio()), c.getcpf());
       cout << "Insira qualquer coisa para retornar ao menu :" << endl;
 
       break;
@@ -124,6 +126,11 @@ int main()
       
       }
       opc=1;
+      break;
+      case 3:
+      r.salvacategoria(r.gethistorico());
+      r.recomenda();
+
       break;
 
     default:
