@@ -28,7 +28,7 @@ public:
     int getquantidade();
     void saveproduct(produto *p);
     vector<string> getlista();
-    void carrinho(vector<string> pro, string s);
+    vector<string> carrinho(vector<string> pro, string s);
     void attproduto(vector<string> pro, int cod);
 };
 
