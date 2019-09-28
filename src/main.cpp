@@ -7,12 +7,6 @@
 #include <vector>
 using namespace std;
 
-void limpa()
-{
-  cout << "\n\n\n\n\n\n"
-       << endl;
-}
-
 int main()
 {
   int opc, checker;
@@ -20,7 +14,7 @@ int main()
   cliente c;
   produto p;
   recomendacao r;
-  vector<string> vet, vaux;
+  vector<string> vet, vaux, temp;
 
   do
   {
@@ -30,10 +24,10 @@ int main()
 
     cout << "\t\t   Menu\n"
          << endl;
-    cout << "1 - Modo Venda" << endl;
-    cout << "2 - Modo Estoque" << endl;
-    cout << "3 - Modo Recomendacao" << endl;
-    cout << "0 - Sair" << endl;
+    cout << "\t1 - Modo Venda" << endl;
+    cout << "\t2 - Modo Estoque" << endl;
+    cout << "\t3 - Modo Recomendacao" << endl;
+    cout << "\t0 - Sair" << endl;
 
     do
     {
@@ -44,10 +38,10 @@ int main()
         cin.clear();
         cin.ignore(10000, '\n');
         checker = 1;
+        cout << "Entrada Invalida!! \n"
+             << endl;
       }
     } while (checker == 1);
-
-    limpa();
 
     switch (opc)
     {
@@ -58,7 +52,8 @@ int main()
       c = c.find();
       if (c.getnome() == "0")
       {
-        cout << "Por favor cadastre o cliente." << endl;
+        cout << "Por favor cadastre o cliente:\n"
+             << endl;
         c.setnome();
         c.setidade();
         c.setcpf();
@@ -69,13 +64,12 @@ int main()
       {
       }
       cout << c.getnome() << endl;
-      // c.imprimedados();
-      // c.showSocio();
-      cout << "Pressione qualquer tecla para ir ao catalogo de produtos..." << endl;
-      getchar();
+      cout << "Listando Produtos...\n"
+           << endl;
       vet = p.getlista();
       r.historico(p.carrinho(vet, c.getSocio()), c.getcpf());
-      cout << "Insira qualquer coisa para retornar ao menu :" << endl;
+      r.salvahistorico();
+      cout << "Compra finalizada. Retornando ao menu..." << endl;
 
       break;
 
@@ -88,7 +82,8 @@ int main()
         cin >> opc;
         if (cin.fail() || opc >= 2)
         {
-          cout << "Opcao Invalida" << endl;
+          cout << "Opcao Invalida !! Digite novamente:\n"
+               << endl;
           cin.clear();
           cin.ignore(10000, '\n');
           checker = 1;
@@ -104,32 +99,37 @@ int main()
         p.setquantidade();
         p.setpreco();
         p.saveproduct(&p);
-        cout << "Produto adicionado !!" << endl;
+        cout << "Produto adicionado !!\n\n"
+             << endl;
       }
       else
       {
         vaux = p.getlista();
+        cout << "Digite o codigo do produto que sera atualizado:" << endl;
         do
         {
-          cout << "Digite o codigo do produto que sera atualizado" << endl;
+
           checker = 0;
           cin >> opc;
-          cout << vaux.size() << endl;
           if (cin.fail() || (opc * 4) >= vaux.size() || opc < 0)
           {
-            cout << "Opcao Invalida" << endl;
+            cout << "Opcao Invalida !! Digite Novamente:" << endl;
             cin.clear();
             cin.ignore(10000, '\n');
+            checker = 1;
           }
         } while (checker == 1);
         p.attproduto(p.getlista(), opc);
-      
       }
-      opc=1;
+      opc = 1;
       break;
-      case 3:
-      r.salvacategoria(r.gethistorico());
-      r.recomenda();
+    case 3:
+      temp = r.analisahist();
+      if (temp[0] == "*")
+      {
+        break;
+      }
+      r.recomenda(temp);
 
       break;
 
