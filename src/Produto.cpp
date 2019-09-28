@@ -13,23 +13,21 @@ void produto::setnome()
     string x, aux;
     fstream arq;
     int z;
-    cout << "Digite o nome do produto:" << endl;
+    cout << "Digite o nome do produto (apenas letras minusculas):" << endl;
     do
     {
         z = 0;
         getline(cin, x);
         for (int i = 0; i < x.size(); i++)
         {
-            if (isalpha(x[i]) || isspace(x[i]))
-            {
-            }
-            else
+            if (((!isalpha(x[i])) && (x[i] != ' ')) || isdigit(x[i]) || (!islower(x[i]) && (x[i] != ' ')))
             {
                 cout << "Nome invalido!! Insira-o novamente:" << endl;
                 z = 1;
                 break;
             }
         }
+
         arq.open("Produtos.txt", ios::in);
         while (getline(arq, aux))
         {
@@ -64,7 +62,7 @@ void produto ::setcategoria()
                 }
                 else
                 {
-                    cout << "Nome invalido!! Insira-o novamente:" << endl;
+                    cout << "Entrada invalida!! Insira-a novamente:" << endl;
                     z = 1;
                     break;
                 }
@@ -104,13 +102,16 @@ void produto ::setcategoria()
 void produto ::setpreco()
 {
     float quant, y = 0;
-    cout << "Digite o preco do produto" << endl;
+    cout << "Digite o preco do produto:" << endl;
+    cout << "Tip: Utilize ponto (.) ao inves de virgula (,) para valores quebrados" << endl;
+    cout << "Caso contrario, apenas a parte inteira sera validada." << endl;
     do
     {
         y = 0;
         cin >> quant;
         if (cin.fail() || quant < 0)
         {
+
             y = 1;
             cin.clear();
             cin.ignore(32767, '\n');
@@ -124,15 +125,16 @@ void produto ::setpreco()
 void produto ::setquantidade()
 {
     int quant, y = 0;
-    cout << "Digite a quantidade de produtos" << endl;
+    cout << "Digite a quantidade de produtos:" << endl;
     do
     {
+        y = 0;
         cin >> quant;
         if (cin.fail() || quant < 0)
         {
-            y = 1;
             cin.clear();
             cin.ignore(32767, '\n');
+            y = 1;
             cout << "Entrada invalida. Digite-a novamente:" << endl;
         }
 
@@ -209,6 +211,7 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
     fstream arq;
     do
     {
+
         cout << "Digite o codigo do produto para adicionar ao carrinho:" << endl;
         do
         {
@@ -236,7 +239,7 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
                 y = 1;
                 cin.clear();
                 cin.ignore(32767, '\n');
-                cout << "Entrada invalida." << endl;
+                cout << "Entrada invalida !!" << endl;
             }
 
         } while (y == 1);
@@ -245,7 +248,8 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
         preco = stof(pro[(p1 * 4) + 2].c_str());
         if (i > quantd)
         {
-            cout << "Quantidade acima do estoque. Saindo do modo venda." << endl;
+            cout << "Quantidade acima do estoque. Saindo do modo venda...\n\n"
+                 << endl;
             return vazio;
         }
         else
@@ -270,7 +274,7 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
             }
 
             cout << "Preco total dos Produtos: R$ " << soma << endl;
-            cout << "gostaria de adicionar outro produto?" << endl;
+            cout << "gostaria de adicionar outro produto?[s/n]" << endl;
 
             do
             {
@@ -284,6 +288,7 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
                     z = "b";
                 }
             } while (z != "a");
+            // getlista();
         }
     } while (quant == "s");
 
@@ -300,13 +305,16 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
     {
         cout << "\n"
              << endl;
-        cout << "Desconto por ser socio (-15%):" << (soma * (15.0 / 100.0)) << endl;
-        cout << "Preco final (-15% por ser socio): R$" << (soma - soma * (15.0 / 100.0)) << endl;
+        cout << "Desconto por ser socio (-15%):" << (soma * (15.0 / 100.0)) << "\n"
+             << endl;
+        cout << "Preco final (-15% por ser socio): R$" << (soma - soma * (15.0 / 100.0)) << "\n"
+             << endl;
         return historico;
     }
     else
     {
-        cout << "Preco final: R$ " << soma << endl;
+        cout << "Preco final: R$ " << soma << "\n"
+             << endl;
         return historico;
     }
     return historico;
@@ -317,12 +325,12 @@ void produto ::attproduto(vector<string> prod, int cod)
     int checker, quanti;
     do
     {
-        cout << "Digite a quantidade a ser adicionada" << endl;
+        cout << "Digite a quantidade a ser adicionada:" << endl;
         checker = 0;
         cin >> quanti;
         if (cin.fail() || quanti < 0)
         {
-            cout << "entrada Invalida" << endl;
+            cout << "entrada Invalida !!" << endl;
             cin.clear();
             cin.ignore(10000, '\n');
             checker = 1;
@@ -338,5 +346,6 @@ void produto ::attproduto(vector<string> prod, int cod)
     }
     arq.close();
 
-    cout << "Quantidade atualizada" << endl;
+    cout << "Quantidade atualizada !!\n\n"
+         << endl;
 }
