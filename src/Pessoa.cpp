@@ -37,7 +37,7 @@ void pessoa ::setnome()
                 break;
             }
         }
-        
+
     } while (z != 0);
     this->nome = x;
 }
