@@ -4,9 +4,8 @@
 #include <string>
 #include "Produto.hpp"
 
-class recomendacao : public produto{
-
-
+class recomendacao : public produto
+{
 
 public:
     recomendacao();
@@ -16,8 +15,8 @@ public:
     void historico(vector<string> categorias, string cpf);
     void salvacategoria(vector<string> novo);
     vector<string> gethistorico();
-    void recomenda();
-    
-
+    void recomenda(vector<string> vet);
+    void salvahistorico();
+    vector<string> analisahist();
 };
 #endif
