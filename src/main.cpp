@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {
   int opc, checker;
-  string aux;
+  string aux, tempchar;
   cliente c;
   produto p;
   recomendacao r;
@@ -18,8 +18,10 @@ int main()
 
   do
   {
+    cout << "\n\n"
+         << endl;
     cout << "=========================================" << endl;
-    cout << "=          LOJINHU DU PEDRINHU          =" << endl;
+    cout << "=-         LOJINHA DU PEDRINHU         -=" << endl;
     cout << "=========================================" << endl;
 
     cout << "\t\t   Menu\n"
@@ -27,7 +29,9 @@ int main()
     cout << "\t1 - Modo Venda" << endl;
     cout << "\t2 - Modo Estoque" << endl;
     cout << "\t3 - Modo Recomendacao" << endl;
-    cout << "\t0 - Sair" << endl;
+    cout << "\t0 - Sair\n"
+         << endl;
+    cout << "Digite o numero da opcao : " << endl;
 
     do
     {
@@ -63,13 +67,21 @@ int main()
       else
       {
       }
-      cout << c.getnome() << endl;
+      cout << "Nome : " << c.getnome() << "\n"
+           << endl;
+      cout << "Pressione qualquer tecla para ir a lista de produtos :" << endl;
+
+      getline(cin, tempchar);
       cout << "Listando Produtos...\n"
            << endl;
       vet = p.getlista();
+      if (vet[0] == "0")
+        {
+          break;
+        }
       r.historico(p.carrinho(vet, c.getSocio()), c.getcpf());
       r.salvahistorico();
-      cout << "Compra finalizada. Retornando ao menu..." << endl;
+      cout << "Compra encerrada. Retornando ao menu..." << endl;
 
       break;
 
@@ -105,13 +117,17 @@ int main()
       else
       {
         vaux = p.getlista();
+        if (vaux[0] == "0")
+        {
+          break;
+        }
         cout << "Digite o codigo do produto que sera atualizado:" << endl;
         do
         {
 
           checker = 0;
           cin >> opc;
-          if (cin.fail() || (opc * 4) >= vaux.size() || opc < 0)
+          if (cin.fail() || (opc * 4) >= (int)vaux.size() || opc < 0)
           {
             cout << "Opcao Invalida !! Digite Novamente:" << endl;
             cin.clear();
