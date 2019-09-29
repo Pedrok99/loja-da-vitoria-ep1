@@ -1,0 +1,40 @@
+salgadinho
+gulouseima
+4
+100
+shampoo
+higiene
+3.5
+20
+coca cola
+bebida
+7
+10
+leite
+laticinio, bebida
+3.7
+30
+iogurte
+laticinio
+3.4
+35
+cha verde
+bebida
+2.5
+23
+jujuba
+gulouseima
+1.5
+43
+sabonete
+higiene
+3
+31
+agua sanitaria
+limpeza
+7
+32
+detergente
+limpeza
+4
+33
