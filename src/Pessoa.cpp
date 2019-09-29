@@ -24,7 +24,7 @@ void pessoa ::setnome()
     {
         z = 0;
         getline(cin, x);
-        for (int i = 0; i < x.size(); i++)
+        for (int i = 0; i < (int)x.size(); i++)
         {
             if (isalpha(x[i]) || isspace(x[i]))
             {
@@ -71,7 +71,7 @@ void pessoa ::setidade(string idade)
 void pessoa ::setcpf()
 {
     string x, aux;
-    int y, i, cont;
+    int y;
     vector<string> cpfs;
     fstream arq;
     cout << "Digite o CPF do cliente:" << endl;
@@ -79,7 +79,7 @@ void pessoa ::setcpf()
     {
         y = 0;
         getline(cin, x);
-        for (int i = 0; i < x.size(); i++)
+        for (int i = 0; i < (int)x.size(); i++)
         {
             if (!isdigit(x[i]) || isspace(x[i]) || x.size() != 11)
             {
@@ -92,7 +92,7 @@ void pessoa ::setcpf()
         }
         if (y != 1)
         {
-            arq.open("Clientes.txt", ios::in);
+            arq.open("./data/Clientes.txt", ios::in);
             while (getline(arq, aux))
             {
                 if (aux == x)

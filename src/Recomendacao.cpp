@@ -5,55 +5,19 @@
 #include <vector>
 #include <ctime>
 #include <random>
+
 using namespace std;
 
 recomendacao::recomendacao() {}
 recomendacao::~recomendacao() {}
-/*
-vector<string> recomendacao ::separacategoria()
-{
-    int pos = 0, cont = 0;
-    fstream arq;
-    string categoria, lim = ", ";
-    vector<string> lc;
-    arq.open("Produtos.txt", ios::in);
 
-    while (getline(arq, categoria))
-    {
-        if (cont == 1)
-        {
-            while (categoria.find(", ") != string::npos)
-            {
-                pos = categoria.find(", ");
-                lc.push_back(categoria.substr(0, pos));
-                categoria.erase(0, pos + lim.length());
-            }
-
-            lc.push_back(categoria);
-        }
-
-        cont++;
-
-        if (cont == 4)
-        {
-            cont = 0;
-        }
-    }
-    arq.close();
-    for (int i = 0; i < lc.size(); i++)
-    {
-        cout << lc[i] << endl;
-    }
-    return lc;
-}
-*/
 vector<string> recomendacao ::separacategoria(vector<string> v)
 {
     int pos = 0;
     string lim = ", ";
     vector<string> separar;
 
-    for (int i = 0; i < v.size(); i++)
+    for (int i = 0; i < (int)v.size(); i++)
     {
         while (v[i].find(", ") != std::string::npos)
         {
@@ -64,48 +28,6 @@ vector<string> recomendacao ::separacategoria(vector<string> v)
         separar.push_back(v[i]);
     }
     return separar;
-}
-
-void recomendacao ::salvacategoria(vector<string> novo)
-{
-    fstream arq;
-    vector<string> cat;
-    string temp;
-
-    arq.open("Categorias.txt", ios::in);
-
-    while (getline(arq, temp))
-    {
-        cat.push_back(temp);
-    }
-    arq.close();
-
-    for (int i = 0; i < cat.size(); i++)
-    {
-
-        for (int cont = 0; cont < novo.size(); cont++)
-        {
-
-            if (cat[i] == novo[cont])
-            {
-                novo[cont] = "0";
-            }
-        }
-    }
-
-    for (int i = 0; i < novo.size(); i++)
-    {
-        if (novo[i] != "0")
-        {
-            cat.push_back(novo[i]);
-        }
-    }
-    arq.open("Categorias.txt", ios::out | ios::trunc);
-    for (int i = 0; i < cat.size(); i++)
-    {
-        arq << cat[i] << endl;
-    }
-    arq.close();
 }
 
 void recomendacao ::historico(vector<string> categorias, string cpf)
@@ -121,11 +43,11 @@ void recomendacao ::historico(vector<string> categorias, string cpf)
 
     separado = separacategoria(categorias);
 
-    arq.open("Historico.txt", ios::out | ios::trunc);
+    arq.open("./data/Historico.txt", ios::out | ios::trunc);
 
     arq << cpf << endl;
 
-    for (int i = 0; i < separado.size(); i++)
+    for (int i = 0; i < (int)separado.size(); i++)
     {
         arq << separado[i] << endl;
     }
@@ -139,7 +61,7 @@ vector<string> recomendacao::gethistorico()
     string temp;
     vector<string> hist;
 
-    arq.open("Historico.txt", ios::in);
+    arq.open("./data/Historico.txt", ios::in);
 
     getline(arq, temp);
 
@@ -158,15 +80,15 @@ void recomendacao::salvahistorico()
     vector<string> v;
     string cpf, categoria;
 
-    arq.open("Historico.txt", ios::in);
+    arq.open("./data/Historico.txt", ios::in);
 
     while (getline(arq, categoria))
     {
         v.push_back(categoria);
     }
     arq.close();
-    arq.open(v[0] + ".txt", ios::out | ios::app);
-    for (int i = 1; i < v.size(); i++)
+    arq.open("./data/" + v[0] + ".txt", ios::out | ios::app);
+    for (int i = 1; i < (int)v.size(); i++)
     {
         arq << v[i] << endl;
     }
@@ -183,23 +105,26 @@ vector<string> recomendacao ::analisahist()
     vector<string> categorias, ordenado, aux1, error;
     error.push_back("*");
 
-    cout << "Digite o cpf do cliente" << endl;
+    cout << "Digite o cpf do cliente :" << endl;
     cin.ignore(10000, '\n');
     do
     {
         y = 0;
         getline(cin, cpf);
-        for (int i = 0; i < cpf.size(); i++)
+        for (int i = 0; i < (int)cpf.size(); i++)
         {
             if (!isdigit(cpf[i]) || isspace(cpf[i]) || cpf.size() != 11)
             {
                 y = 1;
-                cout << "Cpf invalido. Digite novamente:" << endl;
             }
+        }
+        if (y == 1)
+        {
+            cout << "Cpf invalido. Digite novamente:" << endl;
         }
     } while (y == 1);
 
-    arq.open(cpf + ".txt", ios::in);
+    arq.open("./data/" + cpf + ".txt", ios::in);
     if (arq.fail())
     {
         cout << "Cpf invalido ou o cliente ainda nao efetuou nenhuma compra..." << endl;
@@ -208,7 +133,7 @@ vector<string> recomendacao ::analisahist()
     }
     else
     {
-        cout << "Verificando historico..." << endl;
+        cout << "\n\nVerificando historico...\n" << endl;
         while (getline(arq, aux))
         {
             categorias.push_back(aux);
@@ -218,10 +143,10 @@ vector<string> recomendacao ::analisahist()
 
     aux1 = categorias;
 
-    for (int i = 0; i < categorias.size(); i++)
+    for (int i = 0; i < (int)categorias.size(); i++)
     {
 
-        for (int j = 0; j < categorias.size(); j++)
+        for (int j = 0; j < (int)categorias.size(); j++)
         {
             if ((categorias[i] == aux1[j]))
             {
@@ -240,9 +165,9 @@ vector<string> recomendacao ::analisahist()
     aux1 = ordenado;
     int maior = 0, pos;
 
-    for (int i = 0; i < ordenado.size(); i += 2)
+    for (int i = 0; i < (int)ordenado.size(); i += 2)
     {
-        for (int j = 1; j < ordenado.size(); j += 2)
+        for (int j = 1; j < (int)ordenado.size(); j += 2)
         {
             if (atoi(ordenado[j].c_str()) > maior)
             {
@@ -269,7 +194,7 @@ void recomendacao ::recomenda(vector<string> vet)
     fstream arq;
     string aux;
     vector<string> lista, temp;
-    arq.open("Produtos.txt", ios::in);
+    arq.open("./data/Produtos.txt", ios::in);
 
     while (getline(arq, aux))
     {
@@ -285,21 +210,24 @@ void recomendacao ::recomenda(vector<string> vet)
     cout << "Produtos recomendados com base em suas compras passadas:\n"
          << endl;
 
-    for (int g = 0; g < vet.size(); g++)
-        cout << vet[g] << endl;
-
-    for (int i = 0; i < vet.size(); i = i + 2)
+  /* for (int g = 0; g < 20; g += 2)
     {
-        if (i > 20)
+        cout << "Categoria: " << vet[g] << endl;
+        cout << "Frequencia de compra : " << vet[g + 1] << endl;
+    } */
+
+    for (int i = 0; i < (int)vet.size(); i = i + 2)
+    {
+        if (i >= 20)
         {
             return;
         }
-        for (int j = 1; j < lista.size(); j = j + 2)
+
+        for (int j = 1; j < (int)lista.size(); j = j + 2)
         {
 
             if (lista[j].find(vet[i]) != string::npos)
             {
-
                 temp.push_back(lista[j - 1]);
             }
         }
@@ -310,7 +238,15 @@ void recomendacao ::recomenda(vector<string> vet)
         uniform_int_distribution<uint32_t> dice(0, (temp.size() - 1));
         random = dice(generator);
 
-        cout << i / 2 << "-" << temp[random] << endl;
-        temp.clear();
+        if (temp.size() <= 0)
+        {
+            cout << "Historico do cliente apresenta um produto de categoria desconhecida" << endl;
+            temp.clear();
+        }
+        else
+        {
+            cout << (i / 2) + 1 << "-" << temp[random] << endl;
+            temp.clear();
+        }
     }
 }

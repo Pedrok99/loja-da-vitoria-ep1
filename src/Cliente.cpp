@@ -59,7 +59,7 @@ string cliente::getSocio()
 void cliente ::saveclient(cliente *p)
 {
     fstream arq;
-    arq.open("Clientes.txt", ios::out | ios::app);
+    arq.open("./data/Clientes.txt", ios::out | ios::app);
     arq << p->getnome() << endl;
     arq << p->getidade() << endl;
     arq << p->getcpf() << endl;
@@ -77,7 +77,7 @@ cliente cliente ::find()
     do
     {
         cout << "Digite o cpf do cliente:" << endl;
-        cout << "Se o cliente for novo, digite um ( "
+        cout << "Se o cliente nao possuir cadastro, digite um asterisco ( "
                 "*"
                 " ):"
              << endl;
@@ -85,7 +85,7 @@ cliente cliente ::find()
         {
             y = 0;
             getline(cin, x);
-            for (int c = 0; c < x.size(); c++)
+            for (int c = 0; c < (int)x.size(); c++)
             {
                 if (x == "*")
                 {
@@ -102,12 +102,12 @@ cliente cliente ::find()
             }
             if (y == 1)
             {
-                cout << "Cpf invalido. Digite novamente:" << endl;
+                cout << "Cpf invalido. Digite novamente: " << endl;
             }
 
         } while (y != 0);
 
-        arquivo.open("Clientes.txt", ios::in);
+        arquivo.open("./data/Clientes.txt", ios::in);
         i = 0;
         y = 0;
         while (getline(arquivo, inf))
@@ -115,7 +115,7 @@ cliente cliente ::find()
             v.push_back(inf);
             if (v[i] == x)
             {
-                cout << "Cliente encontrado" << endl;
+                cout << "\nCliente encontrado !!" << endl;
                 pos = i - 2;
                 y = 1;
             }

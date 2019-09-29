@@ -18,7 +18,7 @@ void produto::setnome()
     {
         z = 0;
         getline(cin, x);
-        for (int i = 0; i < x.size(); i++)
+        for (int i = 0; i < (int)x.size(); i++)
         {
             if (((!isalpha(x[i])) && (x[i] != ' ')) || isdigit(x[i]) || (!islower(x[i]) && (x[i] != ' ')))
             {
@@ -28,7 +28,7 @@ void produto::setnome()
             }
         }
 
-        arq.open("Produtos.txt", ios::in);
+        arq.open("./data/Produtos.txt", ios::in);
         while (getline(arq, aux))
         {
             if (aux == x)
@@ -55,7 +55,7 @@ void produto ::setcategoria()
         {
             z = 0;
             getline(cin, quant);
-            for (int i = 0; i < quant.size(); i++)
+            for (int i = 0; i < (int)quant.size(); i++)
             {
                 if (isalpha(quant[i]) || isspace(quant[i]))
                 {
@@ -165,7 +165,7 @@ int produto ::getquantidade()
 void produto ::saveproduct(produto *p)
 {
     fstream arq;
-    arq.open("Produtos.txt", ios::out | ios::app);
+    arq.open("./data/Produtos.txt", ios::out | ios::app);
     arq << p->getnome() << endl;
     arq << p->getcategoria() << endl;
     arq << p->getpreco() << endl;
@@ -179,7 +179,15 @@ vector<string> produto ::getlista()
     string quant;
     int i = 0;
     vector<string> v;
-    arq.open("Produtos.txt", ios::in);
+    arq.open("./data/Produtos.txt", ios::in);
+
+    if (arq.peek() == std::ifstream::traits_type::eof() )
+{
+   cout << "Nenhum produto foi cadastrado. Retornando ao menu..." << endl;
+   v.push_back("0");
+   return v;
+}
+
     cout << "lista de produtos:\n"
          << endl;
     while (getline(arq, quant))
@@ -206,7 +214,7 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
 {
     string quant, z;
     int y, i, p1, quantd;
-    float preco, soma = 0, total;
+    float soma = 0, total;
     vector<string> backup = pro, carrinho, historico, vazio;
     fstream arq;
     do
@@ -226,7 +234,7 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
             }
         } while (y == 1);
         p1 = i;
-        cout << "Produto selecionado:" << pro[p1 * 4] << endl;
+        cout << "Produto selecionado : " << pro[p1 * 4] << "\n" << endl;
         carrinho.push_back(pro[p1 * 4]);
         historico.push_back(pro[(i * 4) + 1]);
         cout << "Digite a quantidade desejada:" << endl;
@@ -245,7 +253,6 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
         } while (y == 1);
         carrinho.push_back(to_string(i));
         quantd = atoi(pro[(p1 * 4) + 3].c_str());
-        preco = stof(pro[(p1 * 4) + 2].c_str());
         if (i > quantd)
         {
             cout << "Quantidade acima do estoque. Saindo do modo venda...\n\n"
@@ -264,8 +271,8 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
             soma = soma + total;
 
             carrinho.push_back(pro[(p1 * 4) + 2]);
-            cout << "No carrinho :" << endl;
-            for (int vrum = 0; vrum < carrinho.size(); vrum += 3)
+            cout << "\nNo carrinho :" << endl;
+            for (int vrum = 0; vrum < (int)carrinho.size(); vrum += 3)
             {
                 cout << "Produto:" << carrinho[vrum] << endl;
                 cout << "Quantidade:" << carrinho[vrum + 1] << endl;
@@ -294,8 +301,8 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
 
     if (quant == "n")
     {
-        arq.open("Produtos.txt", ios::out | ios::trunc);
-        for (int cont = 0; cont < pro.size(); cont++)
+        arq.open("./data/Produtos.txt", ios::out | ios::trunc);
+        for (int cont = 0; cont < (int)pro.size(); cont++)
         {
             arq << pro[cont] << endl;
         }
@@ -305,9 +312,9 @@ vector<string> produto ::carrinho(vector<string> pro, string s)
     {
         cout << "\n"
              << endl;
-        cout << "Desconto por ser socio (-15%):" << (soma * (15.0 / 100.0)) << "\n"
+        cout << "Desconto por ser socio (-15%): R$ " << (soma * (15.0 / 100.0)) << "\n"
              << endl;
-        cout << "Preco final (-15% por ser socio): R$" << (soma - soma * (15.0 / 100.0)) << "\n"
+        cout << "Preco final : R$ " << (soma - soma * (15.0 / 100.0)) << "\n"
              << endl;
         return historico;
     }
@@ -330,7 +337,7 @@ void produto ::attproduto(vector<string> prod, int cod)
         cin >> quanti;
         if (cin.fail() || quanti < 0)
         {
-            cout << "entrada Invalida !!" << endl;
+            cout << "Entrada Invalida !!" << endl;
             cin.clear();
             cin.ignore(10000, '\n');
             checker = 1;
@@ -339,8 +346,8 @@ void produto ::attproduto(vector<string> prod, int cod)
 
     prod[(cod * 4) + 3] = to_string(atoi(prod[(cod * 4) + 3].c_str()) + quanti);
     fstream arq;
-    arq.open("Produtos.txt", ios::out | ios::trunc);
-    for (int cont = 0; cont < prod.size(); cont++)
+    arq.open("./data/Produtos.txt", ios::out | ios::trunc);
+    for (int cont = 0; cont < (int)prod.size(); cont++)
     {
         arq << prod[cont] << endl;
     }
