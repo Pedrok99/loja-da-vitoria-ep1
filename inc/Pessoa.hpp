@@ -8,7 +8,7 @@ using namespace std;
 
 class pessoa {
     private:
-        string nome, cpf, idade;;
+        string nome, cpf, idade;
     public:
         pessoa();
         ~pessoa();

@@ -13,7 +13,6 @@ public:
     vector<string> separacategoria();
     vector<string> separacategoria(vector<string> v);
     void historico(vector<string> categorias, string cpf);
-    void salvacategoria(vector<string> novo);
     vector<string> gethistorico();
     void recomenda(vector<string> vet);
     void salvahistorico();
