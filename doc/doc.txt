@@ -26,8 +26,8 @@ desconto de 15 % no valor total.
 Modo Estoque:
 
 	Acessando o modo estoque, será permitido ao usuário definir novos produtos
-ou atualizar a quantidade de produtos já existentes. Ao acrescentar novos produ-
-tos, será solicitado que o usuário especifique as categorias dos mesmos. Não é 
+ou atualizar a quantidade de produtos já existentes. Ao acrescentar novos produtos,
+será solicitado que o usuário especifique as categorias dos mesmos. Não é 
 possível retirar produtos e nem editá-los, apenas atualizar sua quantidade.
 
 Modo Recomendação:
