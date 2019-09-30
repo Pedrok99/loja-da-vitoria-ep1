@@ -21,7 +21,7 @@ int main()
     cout << "\n\n"
          << endl;
     cout << "=========================================" << endl;
-    cout << "=-         LOJINHA DU PEDRINHU         -=" << endl;
+    cout << "=-         LOJINHA DA VICTORIA         -=" << endl;
     cout << "=========================================" << endl;
 
     cout << "\t\t   Menu\n"
