@@ -72,4 +72,4 @@ Existe um material de apoio na [wiki do repositório](https://gitlab.com/oofga/e
 |**Qualidade do Código**| Utilização de boas práticas como o uso de bons nomes, modularização e organização em geral.    |  1,0 |
 |**Repositório**|   Utilização correta do repositório, commits claros e frequentes. |   1,0 |
 |      |    TOTAL   |   10  |
-|**Pontuação Extra**|   Qualidade e usabilidade acima da média.  |  0,5   |
+|**Pontuação Extra**|   Qualidade e usabilidade acima da média  |  0,5   |
